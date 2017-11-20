@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+import os
 import configparser
 from subprocess import PIPE, run
 from sys import platform
 
-CONFIG_NAME = 'ssid_context_map.ini'
+CONFIG_NAME = os.path.join(os.path.dirname(__file__), 'ssid_context_map.ini')
 
 
 def main():

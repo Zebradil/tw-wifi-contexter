@@ -50,9 +50,11 @@ def set_context(context):
 def get_ssid_macosx():
     cmd = '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport'
     for row in run([cmd, '-I'], stdout=PIPE, encoding='utf-8').stdout.split("\n"):
-        key, val = [x.strip() for x in row.split(':', 1)]
-        if key == 'SSID':
-            return val
+        # There could be an empty row
+        if row:
+            key, val = [x.strip() for x in row.split(':', 1)]
+            if key == 'SSID':
+                return val
     return None
 
 
